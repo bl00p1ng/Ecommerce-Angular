@@ -1,2 +1,8 @@
 <input type="text" [(ngModel)]="imgUrl">
 <app-img (loaded)="onLoaded($event)" [img]="imgUrl"></app-img>
+
+<app-product
+  [product]="product"
+  *ngFor="let product of products"
+>
+</app-product>
