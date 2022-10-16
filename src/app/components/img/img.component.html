@@ -1,1 +1,12 @@
-<p>img works!</p>
+<img
+  *ngIf="img; else defaultImage"
+  width="200px"
+  [src]="img"
+  alt="Lucy" />
+<ng-template #defaultImage>
+  <img
+    src="./assets/images/default.png"
+    alt="Imagen por defecto"
+    width="200px"
+  />
+</ng-template>
