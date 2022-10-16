@@ -1,12 +1,10 @@
 <img
   *ngIf="img; else defaultImage"
-  width="200px"
   [src]="img"
+  (load)="imgLoad()"
+  (error)="imgError()"
+  width="200px"
   alt="Lucy" />
 <ng-template #defaultImage>
-  <img
-    src="./assets/images/default.png"
-    alt="Imagen por defecto"
-    width="200px"
-  />
+  <img [src]="imageDefault" alt="">
 </ng-template>

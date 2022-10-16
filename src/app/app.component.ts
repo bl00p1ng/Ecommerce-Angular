@@ -5,6 +5,12 @@ import { Component } from '@angular/core';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
+
 export class AppComponent {
   imgUrl = '';
+
+  // Métodos
+  onLoaded(img: string) {
+    console.log(`Log padre ${img}`);
+  }
 }
