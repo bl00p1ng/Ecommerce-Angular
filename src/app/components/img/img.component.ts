@@ -29,8 +29,8 @@ export class ImgComponent implements OnInit, OnChanges, AfterViewInit, OnDestroy
   @Input() alt: string = '';
   @Output() loaded = new EventEmitter<string>()
   imageDefault: string = './assets/images/default.png';
-  counter: number = 0;
-  counterFn: number | undefined;
+  // counter: number = 0;
+  // counterFn: number | undefined;
 
   constructor() {
     console.log('Constructor', 'Img value =>', this.img);
@@ -39,10 +39,10 @@ export class ImgComponent implements OnInit, OnChanges, AfterViewInit, OnDestroy
   ngOnChanges(changes: SimpleChanges): void {
     console.log('ngOnChages', 'Img value =>', this.img);
 
-    this.counterFn = window.setInterval(() => {
-      this.counter += 1;
-      console.log('Run counter');
-    }, 1000)
+    // this.counterFn = window.setInterval(() => {
+    //   this.counter += 1;
+    //   console.log('Run counter');
+    // }, 1000)
   }
 
   ngOnInit(): void {
@@ -55,7 +55,7 @@ export class ImgComponent implements OnInit, OnChanges, AfterViewInit, OnDestroy
 
   ngOnDestroy(): void {
     console.log('onDestroy');
-    window.clearInterval(this.counterFn);
+    // window.clearInterval(this.counterFn);
   }
 
   // ********** Métodos **********
