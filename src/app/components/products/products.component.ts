@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { isNgTemplate } from '@angular/compiler';
+import { Component } from '@angular/core';
 
 import { Product } from '../../models/product.model';
 
@@ -7,7 +8,13 @@ import { Product } from '../../models/product.model';
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.scss']
 })
-export class ProductsComponent implements OnInit {
+
+export class ProductsComponent {
+
+  // Productos agregados al carrito
+  shoppingCart: Product[] = [];
+  // Total del carrito
+  total: number = 0;
 
   products: Product[] = [
     {
@@ -38,7 +45,10 @@ export class ProductsComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit(): void {
+  // Recibir el producto agregado al carrito
+  onAddedProduct(product: Product) {
+    this.shoppingCart.push(product);
+    this.total = this.shoppingCart.reduce((sum, item) => sum + item.price, 0)
   }
 
 }

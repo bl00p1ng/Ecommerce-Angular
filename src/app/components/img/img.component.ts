@@ -23,7 +23,7 @@ export class ImgComponent implements OnInit, OnChanges, AfterViewInit, OnDestroy
   @Input('img')
   set changeImg(newImg: string) {
     this.img = newImg;
-    console.log('Change just image =>', this.img);
+    // console.log('Change just image =>', this.img);
   };
 
   @Input() alt: string = '';
@@ -33,11 +33,11 @@ export class ImgComponent implements OnInit, OnChanges, AfterViewInit, OnDestroy
   // counterFn: number | undefined;
 
   constructor() {
-    console.log('Constructor', 'Img value =>', this.img);
+    // console.log('Constructor', 'Img value =>', this.img);
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    console.log('ngOnChages', 'Img value =>', this.img);
+    // console.log('ngOnChages', 'Img value =>', this.img);
 
     // this.counterFn = window.setInterval(() => {
     //   this.counter += 1;
@@ -46,22 +46,22 @@ export class ImgComponent implements OnInit, OnChanges, AfterViewInit, OnDestroy
   }
 
   ngOnInit(): void {
-    console.log('ngOnInit', 'Img value =>', this.img);
+    // console.log('ngOnInit', 'Img value =>', this.img);
   }
 
   ngAfterViewInit(): void {
-    console.log('ngAfterViewInit');
+    // console.log('ngAfterViewInit');
   }
 
   ngOnDestroy(): void {
-    console.log('onDestroy');
+    // console.log('onDestroy');
     // window.clearInterval(this.counterFn);
   }
 
   // ********** Métodos **********
   //
   imgLoad() {
-    console.log('Load hijo');
+    // console.log('Load hijo');
     this.loaded.emit(this.img)
   }
 
