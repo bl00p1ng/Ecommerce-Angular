@@ -9,7 +9,8 @@ import { Product } from './models/product.model'
 })
 
 export class AppComponent {
-  imgUrl = '';
+  imgUrl: string = '';
+  showImage: boolean = true;
   products: Product[] = [
     {
       id: '1',
@@ -40,5 +41,9 @@ export class AppComponent {
   // Métodos
   onLoaded(img: string) {
     console.log(`Log padre ${img}`);
+  }
+
+  toogleImage() {
+    this.showImage = !this.showImage;
   }
 }

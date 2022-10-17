@@ -1,5 +1,16 @@
-<input type="text" [(ngModel)]="imgUrl">
-<app-img (loaded)="onLoaded($event)" [img]="imgUrl"></app-img>
+<p>
+  <input type="text" [(ngModel)]="imgUrl">
+</p>
+
+<button (click)="toogleImage()">Toggle Image</button>
+<p>{{ showImage }}</p>
+
+<app-img
+  *ngIf="showImage"
+  (loaded)="onLoaded($event)"
+  [img]="imgUrl"
+>
+</app-img>
 
 <app-product
   [product]="product"
