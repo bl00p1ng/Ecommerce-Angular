@@ -1,7 +1,7 @@
-import { isNgTemplate } from '@angular/compiler';
 import { Component } from '@angular/core';
 
 import { Product } from '../../models/product.model';
+import { StoreService } from '../../services/store.service'
 
 @Component({
   selector: 'app-products',
@@ -43,12 +43,16 @@ export class ProductsComponent {
     }
   ]
 
-  constructor() { }
+  constructor(
+    private storeService: StoreService
+  ) {
+    this.shoppingCart = this.storeService.getShoppingCart();
+  }
 
   // Recibir el producto agregado al carrito
   onAddedProduct(product: Product) {
-    this.shoppingCart.push(product);
-    this.total = this.shoppingCart.reduce((sum, item) => sum + item.price, 0)
+    this.storeService.addtoCart(product);
+    this.total = this.storeService.getTotal()
   }
 
 }
