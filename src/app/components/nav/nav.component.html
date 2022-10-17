@@ -1,6 +1,7 @@
+<!-- MENU MOBILE -->
 <div class="show-mobile">
   <div>
-    <button>
+    <button (click)="toggleSideMenu()">
       <img src="./assets/svg/icon_menu.svg" alt="menu">
     </button>
     <a href="">
@@ -10,8 +11,19 @@
       <img src="./assets/svg/icon_shopping_cart.svg" alt="logo">
     </a>
   </div>
+
+  <!-- SIDE MENU -->
+  <div class="side-menu" [class.active]="activeSideMenu">
+    <button (click)="toggleSideMenu()">×</button>
+    <ul>
+      <li><a href="">All</a></li>
+      <li><a href="">Clothes</a></li>
+      <li><a href="">Electronics</a></li>
+    </ul>
+  </div>
 </div>
 
+<!-- MENU DESKTOP -->
 <div class="hide-mobile">
   <div>
     <nav>
