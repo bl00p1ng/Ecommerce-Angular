@@ -12,9 +12,6 @@ export class NavComponent {
 
   constructor() { }
 
-  ngOnInit(): void {
-  }
-
   // Móstrar/ocultar side menu (mobile)
   toggleSideMenu() {
     this.activeSideMenu = !this.activeSideMenu;
