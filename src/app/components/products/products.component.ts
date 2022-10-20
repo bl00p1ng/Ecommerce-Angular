@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Product } from '../../models/product.model';
 import { StoreService } from '../../services/store.service'
 import { ProductsService } from "../../services/products.service";
+import SwiperCore from 'swiper';
 
 @Component({
   selector: 'app-products',
@@ -16,6 +17,20 @@ export class ProductsComponent implements OnInit {
   shoppingCart: Product[] = [];
   // Total del carrito
   total: number = 0;
+  // Mostrar detalle del producto
+  showProductDetail: boolean = false;
+  // Producto elegido para mostrar el detale
+  productChosen: Product = {
+    id: '',
+    price: 0,
+    images: [],
+    title: '',
+    category: {
+      id: '',
+      name: ''
+    },
+    description: ''
+  };
 
   products: Product[] = []
 
@@ -40,4 +55,20 @@ export class ProductsComponent implements OnInit {
     this.total = this.storeService.getTotal()
   }
 
+  // Mostrar/ocultar detalle del producto
+  toggleProductDetail() {
+    this.showProductDetail = !this.showProductDetail;
+  }
+
+  // Hacer una petición del producto que se quiere mostrar en el detalle
+  onShowProductDetail(id: string) {
+    this.productsService.getProduct(id)
+    .subscribe(data => {
+      // Mostrar sidebar de detalle del producto
+      this.toggleProductDetail();
+
+      // Guardar la información del producto elegido
+      this.productChosen = data;
+    });
+  }
 }

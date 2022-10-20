@@ -10,27 +10,42 @@
   ></app-product>
 </div>
 
-<aside class="product-detail" [class.active]="showProductDetail">
+<aside
+  *ngIf="productChosen"
+  class="product-detail"
+  [class.active]="showProductDetail"
+>
   <img
     (click)="toggleProductDetail()"
     src="./assets/images/icon_close.png"
     alt="Close icon"
   />
 
-  <img
-    src="https://images.pexels.com/photos/276517/pexels-photo-276517.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-    alt="Bike" class="product-image"
-  />
+  <swiper
+    [slidesPerView]="1"
+  >
+    <ng-template
+      *ngFor="let image of productChosen.images"
+      swiperSlide
+    >
+      <img
+        class="product-image"
+        [src]="image"
+        [alt]="productChosen.title"
+      />
+    </ng-template>
+  </swiper>
+
+  <!-- <img
+    [src]="productChosen.images[0]"
+    [alt]="productChosen.title"
+    class="product-image"
+  /> -->
 
   <div class="product-info">
-    <p>$ 120.00</p>
-    <p>Bike</p>
-    <p>
-      With its functional and practical design, this bike also fulfills a
-      decorative function, adding personality and a retro-vintage aesthetic
-      to your house.
-    </p>
-
+    <p>$ {{ productChosen.price }}</p>
+    <p>{{ productChosen.title }}</p>
+    <p>{{ productChosen.description }}</p>
   </div>
 
   <div class="add-to-cart">

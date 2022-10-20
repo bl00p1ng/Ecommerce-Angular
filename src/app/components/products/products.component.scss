@@ -28,6 +28,7 @@
   height: 20px;
   padding: 4px;
   border-radius: 50%;
+  z-index: 2;
 }
 
 .product-detail > img:first-child:hover {
@@ -36,7 +37,7 @@
 
 .product-image {
   width: 100%;
-  border-radius: 16px;
+  border-radius: 1.6rem 1.6rem 0 0;
 }
 
 .product-info {
