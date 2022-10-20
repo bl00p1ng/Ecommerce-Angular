@@ -24,7 +24,7 @@ export class ImgComponent {
 
   @Input() alt: string = '';
   @Output() loaded = new EventEmitter<string>()
-  imageDefault: string = './assets/images/default.png';
+  imageDefault: string = './assets/images/default.jpg';
   // counter: number = 0;
   // counterFn: number | undefined;
 

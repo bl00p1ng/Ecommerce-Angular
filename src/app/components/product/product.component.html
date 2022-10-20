@@ -1,5 +1,25 @@
-<app-img *ngIf="product.images.length > 0" [img]="product.images[0]"></app-img>
-<h2>{{ product.price | currency }}</h2>
-<p>{{ product.title }}</p>
-<p appHighlight>{{ product.category.name }}</p>
-<button (click)="addToCart()">Add to Cart</button>
+<div class="product-card">
+  <app-img
+    *ngIf="product.images.length > 0"
+    [img]="product.images[0]"
+    class="product-img"
+  ></app-img>
+
+  <div class="product-info">
+    <div>
+      <p>{{ product.price | currency }}</p>
+      <p>{{ product.title }}</p>
+    </div>
+
+    <button class="add-to-cart-btn" (click)="addToCart()">
+      <img
+        src="./assets/svg/bt_add_to_cart.svg"
+        alt="Add to cart icon"
+      />
+    </button>
+  </div>
+
+  <button (click)="onShowDetail()" class="show-detail-btn">
+    Ver detalle
+  </button>
+</div>
