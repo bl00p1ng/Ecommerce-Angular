@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Product, CreateProductDTO } from '../../models/product.model';
+import { Product, CreateProductDTO, UpdateProductDTO } from '../../models/product.model';
 import { StoreService } from '../../services/store.service'
 import { ProductsService } from "../../services/products.service";
 import SwiperCore from 'swiper';
@@ -84,9 +84,25 @@ export class ProductsComponent implements OnInit {
 
     this.productsService.create(newProduct)
     .subscribe(data => {
-      console.log(data);
-
       this.products.unshift(data)
+    })
+  }
+
+  // Actualizar un producto
+  updateProduct() {
+    const changes: UpdateProductDTO = {
+      title: 'Macbook Pro'
+    }
+
+    const id: string = this.productChosen.id;
+
+    this.productsService.update(id, changes)
+    .subscribe(data => {
+      // Actualizar el producto en la UI
+      const productIndex = this.products.findIndex(item => item.id === id)
+      this.products[productIndex] = data;
+
+      this.productChosen.title = data.title;
     })
   }
 }

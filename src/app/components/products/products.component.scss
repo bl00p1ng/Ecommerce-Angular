@@ -85,6 +85,22 @@
   margin-right: 4px;
 }
 
+.secondary-button {
+  width: 100%;
+  background-color: var(--white);
+  border: 1px solid var(--hospital-green);
+  border-radius: 8px;
+  color: var(--hospital-green);
+  font-weight: 700;
+  height: 40px;
+  cursor: pointer;
+  font-size: var(--md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.6rem;
+}
+
 // Tablets
 @media (min-width: 640px) {
   .products--grid {
