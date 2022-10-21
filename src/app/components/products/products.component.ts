@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Product } from '../../models/product.model';
+import { Product, CreateProductDTO } from '../../models/product.model';
 import { StoreService } from '../../services/store.service'
 import { ProductsService } from "../../services/products.service";
 import SwiperCore from 'swiper';
@@ -70,5 +70,23 @@ export class ProductsComponent implements OnInit {
       // Guardar la información del producto elegido
       this.productChosen = data;
     });
+  }
+
+  // Crear un nuevo producto
+  createNewProduct() {
+    const newProduct: CreateProductDTO = {
+      title: 'Waifu',
+      description: 'Lucy señora y patrona de lo los devs',
+      price: 100000000,
+      categoryId: 5,
+      images: ['https://i.ibb.co/vvrkgDr/lucy.jpg']
+    }
+
+    this.productsService.create(newProduct)
+    .subscribe(data => {
+      console.log(data);
+
+      this.products.unshift(data)
+    })
   }
 }
