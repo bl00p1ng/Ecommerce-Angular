@@ -34,4 +34,8 @@ export class ProductsService {
     return this.http.put<Product>(`${this.apiUrl}/${id}`, productData);
   }
 
+  // ELiminar un producto de la API por su ID
+  delete(id: string) {
+    return this.http.delete<boolean>(`${this.apiUrl}/${id}`);
+  }
 }

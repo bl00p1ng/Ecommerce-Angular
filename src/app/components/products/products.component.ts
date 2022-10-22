@@ -105,4 +105,15 @@ export class ProductsComponent implements OnInit {
       this.productChosen.title = data.title;
     })
   }
+
+  // Eliminar un producto
+  deleteProduct() {
+    const idToDelete = this.productChosen.id;
+    this.productsService.delete(idToDelete)
+    .subscribe(() => {
+      const productIndex = this.products.findIndex(item => item.id === this.productChosen.id)
+      this.products.splice(productIndex, 1);
+      this.showProductDetail = false;
+    });
+  }
 }

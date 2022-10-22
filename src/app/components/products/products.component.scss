@@ -101,6 +101,27 @@
   margin-bottom: 1.6rem;
 }
 
+.delete-button {
+  width: 100%;
+  background-color: var(--white);
+  border: 1px solid var(--red);
+  border-radius: 8px;
+  color: var(--red);
+  font-weight: 700;
+  height: 40px;
+  cursor: pointer;
+  font-size: var(--md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.6rem;
+}
+
+svg {
+  width: 2rem;
+  height: 2rem;
+}
+
 // Tablets
 @media (min-width: 640px) {
   .products--grid {
