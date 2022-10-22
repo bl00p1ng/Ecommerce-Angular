@@ -31,6 +31,9 @@ export class ProductsComponent implements OnInit {
     },
     description: ''
   };
+  // Paginación de las consultas a la API
+  limit: number = 10;
+  offset: number = 0;
 
   products: Product[] = []
 
@@ -43,7 +46,7 @@ export class ProductsComponent implements OnInit {
 
   ngOnInit(): void {
     // Obtener productos desde la API
-    this.productsService.getProducts()
+    this.productsService.getProducts(10, 0)
     .subscribe(data => {
       this.products = data;
     });
@@ -114,6 +117,16 @@ export class ProductsComponent implements OnInit {
       const productIndex = this.products.findIndex(item => item.id === this.productChosen.id)
       this.products.splice(productIndex, 1);
       this.showProductDetail = false;
+    });
+  }
+
+  // Cargar más productos de la API
+  loadMore() {
+    // Obtener productos desde la API
+    this.productsService.getProducts(10, 0)
+    .subscribe(data => {
+      this.products = this.products.concat(data);
+      this.offset += this.limit;
     });
   }
 }

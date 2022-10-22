@@ -122,6 +122,14 @@ svg {
   height: 2rem;
 }
 
+.load-more {
+  width: 90%;
+  margin: 1.6rem auto;
+  > svg {
+    margin-right: 0.5rem;
+  }
+}
+
 // Tablets
 @media (min-width: 640px) {
   .products--grid {
