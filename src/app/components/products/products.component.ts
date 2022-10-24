@@ -34,6 +34,8 @@ export class ProductsComponent implements OnInit {
   // Paginación de las consultas a la API
   limit: number = 10;
   offset: number = 0;
+  // Estado de la petición del detalle de un producto
+  statusDetail: 'loading' | 'success' | 'error' | 'init' = 'init';
 
   products: Product[] = []
 
@@ -65,6 +67,7 @@ export class ProductsComponent implements OnInit {
 
   // Hacer una petición del producto que se quiere mostrar en el detalle
   onShowProductDetail(id: string) {
+    this.statusDetail = 'loading';
     this.productsService.getProduct(id)
     .subscribe(data => {
       // Mostrar sidebar de detalle del producto
@@ -72,6 +75,11 @@ export class ProductsComponent implements OnInit {
 
       // Guardar la información del producto elegido
       this.productChosen = data;
+
+      this.statusDetail = 'success';
+    }, error => {
+      window.alert(error);
+      this.statusDetail = 'error';
     });
   }
 
