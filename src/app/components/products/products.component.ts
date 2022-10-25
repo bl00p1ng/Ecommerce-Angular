@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Product, CreateProductDTO, UpdateProductDTO } from '../../models/product.model';
 import { StoreService } from '../../services/store.service'
 import { ProductsService } from "../../services/products.service";
-import SwiperCore from 'swiper';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-products',
@@ -69,17 +69,24 @@ export class ProductsComponent implements OnInit {
   onShowProductDetail(id: string) {
     this.statusDetail = 'loading';
     this.productsService.getProduct(id)
-    .subscribe(data => {
-      // Mostrar sidebar de detalle del producto
-      this.toggleProductDetail();
+    .subscribe({
+      next: (data) => {
+        // Mostrar sidebar de detalle del producto
+        this.toggleProductDetail();
 
-      // Guardar la información del producto elegido
-      this.productChosen = data;
+        // Guardar la información del producto elegido
+        this.productChosen = data;
 
-      this.statusDetail = 'success';
-    }, error => {
-      window.alert(error);
-      this.statusDetail = 'error';
+        this.statusDetail = 'success';
+      },
+      error: (err) => {
+        this.statusDetail = 'error';
+        Swal.fire({
+          icon: 'error',
+          title: 'Lo sentimos...',
+          text: err,
+        })
+      }
     });
   }
 

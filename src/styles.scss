@@ -20,7 +20,7 @@
 
 * {
   box-sizing: border-box;
-  font-family: 'Quicksand', sans-serif;
+  font-family: 'Quicksand', sans-serif !important;
 }
 
 html {
@@ -34,5 +34,13 @@ body {
 .products--grid {
   app-img img {
     border-radius: 12px;
+  }
+}
+
+.swal2-container .swal2-popup {
+  font-size: 1.6rem;
+  > .swal2-actions button {
+    background-color: var(--hospital-green);
+    box-shadow: none;
   }
 }

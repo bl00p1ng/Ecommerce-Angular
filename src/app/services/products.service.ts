@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams, HttpErrorResponse, HttpStatusCode } from "@angular/common/http";
 import { CreateProductDTO, Product, UpdateProductDTO } from "../models/product.model";
 import { catchError } from "rxjs/operators";
-import { throwError } from "rxjs";
+import { Observable, throwError } from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -32,19 +32,19 @@ export class ProductsService {
     return this.http.get<Product>(`${this.apiUrl}/${id}`)
     .pipe(
       // Manejar errores en la consulta a la API
-      catchError((error: HttpErrorResponse) => {
-        if (error.status === HttpStatusCode.InternalServerError) {
+      catchError((err) => {
+        if (err.status === HttpStatusCode.InternalServerError) {
           // Error interno del servidor
-          throwError(() => new Error('Ha ocurrido un error en el servidor'));
-        } else if (error.status === HttpStatusCode.NotFound) {
+          return throwError(() => new Error('Ha ocurrido un error en el servidor'));
+        } else if (err.status === HttpStatusCode.NotFound) {
           // No encontrado
-          throwError(() => new Error('Lo sentimos, no encontramos lo que buscabas'));
-        } else if (error.status === HttpStatusCode.Unauthorized) {
+          return throwError(() => new Error('Lo sentimos, no encontramos lo que buscabas'));
+        } else if (err.status === HttpStatusCode.Unauthorized) {
           // No autorizado
-          throwError(() => new Error('No estás autorizado!'));
-        } else {
-          throwError(() => new Error('Lo sentimos, algo ha salido mal. Por favor intentelo nuevamente'));
+          return throwError(() => new Error('No estás autorizado!'));
         }
+
+        return throwError(() => new Error('Algo ha salido mal. Por favor intentelo nuevamente'));
       })
     )
   }
