@@ -9,6 +9,7 @@
     <div>
       <p>{{ product.price | currency }}</p>
       <p>{{ product.title }}</p>
+      <p>Valor IVA: {{ product.taxes | currency }}</p>
     </div>
 
     <button class="add-to-cart-btn" (click)="addToCart()">
