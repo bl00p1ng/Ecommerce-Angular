@@ -19,7 +19,7 @@ import { SwiperModule } from 'swiper/angular';
     ProductComponent,
     ProductsComponent,
     NavComponent,
-    HighlightDirective
+    HighlightDirective,
   ],
   imports: [
     BrowserModule,
