@@ -1,3 +1,3 @@
 export interface Auth {
-  token: string;
+  access_token: string;
 }

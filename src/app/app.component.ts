@@ -12,6 +12,8 @@ import { UsersService } from './services/users.service';
 export class AppComponent {
   imgUrl: string = '';
   showImage: boolean = true;
+  // Token de acceso del usuario logueado
+  token = '';
 
   constructor(
     private authService: AuthService,
@@ -40,6 +42,16 @@ export class AppComponent {
   // Autenticar usuario
   login() {
     this.authService.login('andres@example.com', 'angularsitoP4r4L0sAm1g0s')
-    .subscribe(data => console.log(data));
+    .subscribe(response => {
+      // Guardar del token de acceso del usuario
+      console.log(response);
+      this.token = response.access_token;
+    });
+  }
+
+  // Obtener el perfil de un usuario logueado
+  getProfile() {
+    this.authService.profile(this.token)
+    .subscribe(profile => console.log(profile))
   }
 }

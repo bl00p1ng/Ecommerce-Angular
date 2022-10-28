@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { Auth } from '../models/authToke.model';
+import { User } from '../models/user.model';
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +21,15 @@ export class AuthService {
   }
 
   // Obtener el perfil de un usuario autenticado
-  profile() {
-    return this.http.get(`${this.apiUrl}/api/auth/profile`)
+  profile(token: string) {
+    // Setear headers de la petición
+    // const headers = new HttpHeaders();
+    // headers.set('Authorization', `Bearer ${token}`)
+
+    return this.http.get<User>(`${this.apiUrl}/api/auth/profile`, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
   }
 }
