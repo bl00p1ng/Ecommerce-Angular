@@ -12,8 +12,6 @@ import { UsersService } from './services/users.service';
 export class AppComponent {
   imgUrl: string = '';
   showImage: boolean = true;
-  // Token de acceso del usuario logueado
-  token = '';
 
   constructor(
     private authService: AuthService,
@@ -45,13 +43,12 @@ export class AppComponent {
     .subscribe(response => {
       // Guardar del token de acceso del usuario
       console.log(response);
-      this.token = response.access_token;
     });
   }
 
   // Obtener el perfil de un usuario logueado
   getProfile() {
-    this.authService.profile(this.token)
+    this.authService.profile()
     .subscribe(profile => console.log(profile))
   }
 }

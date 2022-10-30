@@ -12,6 +12,7 @@ import { NavComponent } from './components/nav/nav.component';
 import { HighlightDirective } from './directives/highlight.directive';
 import { SwiperModule } from 'swiper/angular';
 import { TimeInterceptor } from './interceptors/time.interceptor';
+import { TokenInterceptor } from './interceptors/token.interceptor';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,11 @@ import { TimeInterceptor } from './interceptors/time.interceptor';
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TimeInterceptor,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
       multi: true
     }
   ],
