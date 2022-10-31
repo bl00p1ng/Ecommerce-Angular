@@ -13,6 +13,8 @@ import { FilesService } from './services/files.service';
 export class AppComponent {
   imgUrl: string = '';
   showImage: boolean = true;
+  // Imagen subida
+  imgUploaded: string = '';
 
   constructor(
     private authService: AuthService,
@@ -58,5 +60,19 @@ export class AppComponent {
   downloadPDF() {
     this.fileService.getFile('file.pdf', 'https://young-sands-07814.herokuapp.com/api/files/dummy.pdf', 'application/pdf')
     .subscribe()
+  }
+
+  // Subir archivo
+  onUpload(event: Event) {
+    const element = event.target as HTMLInputElement;
+    // Seleccionar el archivo subido
+    const file = element.files?.item(0)
+
+    if (file) {
+      this.fileService.uploadFile(file)
+      .subscribe(response => {
+        this.imgUploaded = response.location;
+      })
+    }
   }
 }

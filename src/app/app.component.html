@@ -4,6 +4,12 @@
 <button (click)="login()">Login</button>
 <button (click)="getProfile()">Obtener perfil</button>
 <button (click)="downloadPDF()">Descargar PDF</button>
+<input type="file" (change)="onUpload($event)">
+<img
+  *ngIf="imgUploaded"
+  [src]="imgUploaded"
+  alt="Imagen subida"
+/>
 
 <app-products></app-products>
 
