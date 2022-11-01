@@ -38,12 +38,6 @@
     </ng-template>
   </swiper>
 
-  <!-- <img
-    [src]="productChosen.images[0]"
-    [alt]="productChosen.title"
-    class="product-image"
-  /> -->
-
   <div class="product-info">
     <p>$ {{ productChosen.price }}</p>
     <p>{{ productChosen.title }}</p>
@@ -85,7 +79,7 @@
 </aside>
 
 <button
-  (click)="loadMore()"
+  (click)="onLoadMore()"
   class="primary-button load-more"
 >
   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">

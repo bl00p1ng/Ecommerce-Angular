@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 import { Product, CreateProductDTO, UpdateProductDTO } from '../../models/product.model';
 import { StoreService } from '../../services/store.service'
@@ -11,7 +11,7 @@ import Swal from 'sweetalert2';
   styleUrls: ['./products.component.scss']
 })
 
-export class ProductsComponent implements OnInit {
+export class ProductsComponent {
 
   // Productos agregados al carrito
   shoppingCart: Product[] = [];
@@ -37,21 +37,13 @@ export class ProductsComponent implements OnInit {
   // Estado de la petición del detalle de un producto
   statusDetail: 'loading' | 'success' | 'error' | 'init' = 'init';
 
-  products: Product[] = []
+  @Input() products: Product[] = []
 
   constructor(
     private storeService: StoreService,
     private productsService: ProductsService
   ) {
     this.shoppingCart = this.storeService.getShoppingCart();
-  }
-
-  ngOnInit(): void {
-    // Obtener productos desde la API
-    this.productsService.getProducts(10, 0)
-    .subscribe(data => {
-      this.products = data;
-    });
   }
 
   // Recibir el producto agregado al carrito
@@ -136,12 +128,9 @@ export class ProductsComponent implements OnInit {
   }
 
   // Cargar más productos de la API
-  loadMore() {
-    // Obtener productos desde la API
-    this.productsService.getProducts(10, 0)
-    .subscribe(data => {
-      this.products = this.products.concat(data);
-      this.offset += this.limit;
-    });
+  @Output() loadMore: EventEmitter<string> = new EventEmitter;
+
+  onLoadMore() {
+    this.loadMore.emit();
   }
 }
