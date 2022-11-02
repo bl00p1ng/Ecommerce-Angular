@@ -1,9 +1,11 @@
 <div class="product-card">
-  <app-img
-    *ngIf="product.images.length > 0"
-    [img]="product.images[0]"
-    class="product-img"
-  ></app-img>
+  <a [routerLink]="['/product', product.id]">
+    <app-img
+      *ngIf="product.images.length > 0"
+      [img]="product.images[0]"
+      class="product-img"
+    ></app-img>
+  </a>
 
   <div class="product-info">
     <div>
