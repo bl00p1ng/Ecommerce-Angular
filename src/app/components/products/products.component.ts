@@ -19,6 +19,12 @@ export class ProductsComponent {
   total: number = 0;
   // Mostrar detalle del producto
   showProductDetail: boolean = false;
+  // IDdel producto al que se va a mostrar el detalle
+  @Input() set productId(id: string | null) {
+    if (id) {
+      this.onShowProductDetail(id);
+    }
+  };
   // Producto elegido para mostrar el detale
   productChosen: Product = {
     id: '',
@@ -60,12 +66,15 @@ export class ProductsComponent {
   // Hacer una petición del producto que se quiere mostrar en el detalle
   onShowProductDetail(id: string) {
     this.statusDetail = 'loading';
+
+    // Mostrar sidebar de detalle del producto
+    if (!this.showProductDetail) {
+      this.showProductDetail = true;
+    }
+
     this.productsService.getProduct(id)
     .subscribe({
       next: (data) => {
-        // Mostrar sidebar de detalle del producto
-        this.toggleProductDetail();
-
         // Guardar la información del producto elegido
         this.productChosen = data;
 

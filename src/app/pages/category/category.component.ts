@@ -19,6 +19,8 @@ export class CategoryComponent implements OnInit {
   offset: number = 0;
   // Almacena los productos traidos de la API
   products: Product[] = []
+  // Almacenar el ID de un producto. Viene en los query params
+  productId: string | null = null;
 
   constructor(
     private route: ActivatedRoute,
@@ -26,13 +28,13 @@ export class CategoryComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    // Obtener los productos asociados al Id de la categoria
     this.route.paramMap
     .pipe(
       switchMap(params => {
         // Obtener el ID de la URL
         this.categoryId = params.get('id');
 
-        // Obtener los productos asociados al Id de la categoria
         if (this.categoryId) {
           return this.productsService.getByCategory(this.categoryId, this.limit, this.offset)
         }
@@ -44,6 +46,12 @@ export class CategoryComponent implements OnInit {
     .subscribe(data => {
       this.products = data;
     });
+
+    // TODO: Refactorzar la siguiente lógica en un servicio
+    // Obtener parametros tipo query para el sideBar del detalle del producto
+    this.route.queryParamMap.subscribe(params => {
+      this.productId = params.get('product');
+    })
   }
 
   // Cargar más productos de la API

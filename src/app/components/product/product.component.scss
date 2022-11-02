@@ -39,6 +39,9 @@
 
 .product-card .show-detail-btn {
   width: 100%;
+  display: block;
+  text-decoration: none;
+  text-align: center;
   margin-top: 1.6rem;
   margin-bottom: 2rem;
   border: 1px solid var(--hospital-green);
@@ -47,7 +50,6 @@
   border-radius: var(--sm);
   background-color: var(--white);
   font-weight: 700;
-  cursor: pointer;
 }
 
 .product-card .show-detail-btn:hover {
