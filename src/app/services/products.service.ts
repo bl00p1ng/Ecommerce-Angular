@@ -70,8 +70,6 @@ export class ProductsService {
     }
 
     return this.http.get<Product[]>(`${this.apiUrl}/categories/${categoryId}/products`, { params })
-
-
   }
 
   // Crear un producto en la API
