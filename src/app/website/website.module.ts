@@ -12,7 +12,7 @@ import { ProductDetailComponent } from './pages/product-detail/product-detail.co
 import { LayoutComponent } from './components/layout/layout.component';
 import { SwiperModule } from 'swiper/angular';
 import { WebsiteRoutingModule } from './website-routing.module';
-
+import { QuicklinkModule } from 'ngx-quicklink';
 import { SharedModule } from '../shared/shared.module';
 
 
@@ -32,7 +32,8 @@ import { SharedModule } from '../shared/shared.module';
     CommonModule,
     WebsiteRoutingModule,
     SharedModule,
-    SwiperModule
+    SwiperModule,
+    QuicklinkModule
   ]
 })
 export class WebsiteModule { }
