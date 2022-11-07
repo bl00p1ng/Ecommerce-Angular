@@ -2,12 +2,17 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { NotFoundComponent } from './not-found/not-found.component';
+import { CustomPreloadService } from './serives/custom-preload.service';
 
 const routes: Routes = [
   {
     path: '',
     loadChildren: () => import('./website/website.module')
-    .then(website => website.WebsiteModule)
+    .then(website => website.WebsiteModule),
+    data: {
+      // Precargar módulo
+      preload: true
+    }
   },
   {
     path: 'admin',
@@ -21,7 +26,9 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {
+    preloadingStrategy: CustomPreloadService
+  })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

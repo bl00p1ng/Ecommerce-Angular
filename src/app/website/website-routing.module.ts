@@ -28,7 +28,11 @@ const routes: Routes = [
       {
         path: 'category',
         loadChildren: () => import('./pages/category/category.module')
-        .then(m => m.CategoryModule)
+        .then(m => m.CategoryModule),
+        data: {
+          // Precargar módulo
+          preload: true
+        }
       },
       {
         path: 'product/:id',
